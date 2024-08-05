@@ -1,0 +1,33 @@
+
+    name: JFrog Bot Scan
+
+    on:
+      push:
+        branches:
+          - main
+      pull_request:
+        branches:
+          - main
+
+    jobs:
+      scan:
+        runs-on: ubuntu-latest
+
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v2
+
+          - name: Set up JFrog CLI
+            run: |
+              curl -fL https://getcli.jfrog.io | sh
+              chmod +x jfrog
+              ./jfrog -v
+
+          - name: Configure JFrog CLI
+            run: |
+              ./jfrog rt config --url https://xray-stg.jfrogdev.org --user ${{ secrets.JFROG_USER }} --password ${{ secrets.JFROG_PASSWORD }}
+
+          - name: Xray Scan
+            run: |
+              ./jfrog xr scan --fail
+    
