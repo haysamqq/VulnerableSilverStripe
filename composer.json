@@ -18,6 +18,7 @@
             "homepage": "http://silverstripe.org"
         }
     ],
+    
     "bin": [
         "sake"
     ],
