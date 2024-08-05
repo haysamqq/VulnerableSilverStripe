@@ -8,6 +8,7 @@
         "silverstripe",
         "framework"
     ],
+    
     "authors": [
         {
             "name": "SilverStripe",
@@ -18,6 +19,7 @@
             "homepage": "http://silverstripe.org"
         }
     ],
+    
     
     "bin": [
         "sake"
